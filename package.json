@@ -1,0 +1,41 @@
+{
+  "name": "abundant-color-picker",
+  "version": "1.1.0",
+  "author": "sunlihai",
+  "description": "一个丰富的颜色选择器",
+  "main": "./dist/abundantColorPicker.umd.js",
+  "module": "./dist/abundantColorPicker.es.js",
+  "types": "./dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "view": "vite",
+    "build": "vite --config vite.config.lib.ts build"
+  },
+  "dependencies": {
+    "abundant-color-picker": "link:",
+    "element-plus": "^2.7.2",
+    "tinycolor2": "^1.6.0",
+    "vue": "^3.4.27"
+  },
+  "devDependencies": {
+    "@types/node": "18.15.0",
+    "@types/tinycolor2": "^1.4.6",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.11",
+    "vite-plugin-dts": "^3.9.1",
+    "vue-tsc": "^2.0.17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunlho/abundant-color-picker"
+  },
+  "keywords": [
+    "color",
+    "picker",
+    "vue3"
+  ],
+  "license": "MIT"
+}

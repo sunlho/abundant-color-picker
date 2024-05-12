@@ -1,0 +1,10 @@
+:root {
+  --color-picker-color-primary: #165dff;
+  --color-picker-border-color-base: #ddd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
