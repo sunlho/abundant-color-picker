@@ -52,6 +52,7 @@ const solidColor = computed(() => {
 
 const handleSetting = () => {
   if (colorActive.value === null) return false
+  showPanel.value = true
 }
 
 const onHeart = (e?: onHeartAddColor) => {
