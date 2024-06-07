@@ -7,11 +7,15 @@ const props = withDefaults(
   defineProps<{
     modelValue: string
     type?: ColorPickerBoxType
+    panel?: "pure" | "all"
   }>(),
   {
     type: ColorPickerBoxType.PoPupPanel,
+    colorType: "all",
   }
 )
+
+console.log(props)
 const emit = defineEmits<{
   (event: "update:modelValue", payload: string): void
 }>()
@@ -106,12 +110,12 @@ onBeforeUnmount(() => {
     <div v-if="ColorPickerBoxType.PoPupPanel == type" class="custom_color_picker" ref="pickerRef">
       <div class="color_trigger" :style="{ background: colorPicker }" @click="handlePanel" ref="triggerRef">
         <div v-if="showPanel" class="color_panel" :style="{ ...panelStyle }" ref="panelRef">
-          <gradient-color-picker v-model="colorPicker"></gradient-color-picker>
+          <gradient-color-picker :panel="panel" v-model="colorPicker"></gradient-color-picker>
         </div>
       </div>
     </div>
     <div v-if="ColorPickerBoxType.Panel == type">
-      <gradient-color-picker v-model="colorPicker"></gradient-color-picker>
+      <gradient-color-picker :panel="panel" v-model="colorPicker"></gradient-color-picker>
     </div>
   </div>
 </template>

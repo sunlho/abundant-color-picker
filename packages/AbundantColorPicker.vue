@@ -16,9 +16,17 @@ import tinyColor from "tinycolor2"
 import { ElMessage } from "element-plus"
 import { gradientColor, onChangeColorParams, onHeartColorParams } from "./type"
 
-const props = defineProps<{
-  modelValue: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    modelValue: string
+    panel?: "all" | "pure"
+  }>(),
+  {
+    panel: "all",
+  }
+)
+
+console.log(props)
 
 const emit = defineEmits<{
   (event: "update:modelValue", payload: string): void
@@ -41,12 +49,17 @@ const radialColor = ref<gradientColor[]>([
   { color: gradientColorPredefine[0][1], left: 100 },
 ])
 
-const panelType = ref(ColorPickerPanelType.Solid)
-const panelTypeList = reactive([
-  { name: "纯色", type: ColorPickerPanelType.Solid },
-  { name: "线性渐变", type: ColorPickerPanelType.Linear },
-  { name: "径向渐变", type: ColorPickerPanelType.Radial },
-])
+const panelType = ref(props.panel === "all" ? ColorPickerPanelType.Solid : ColorPickerPanelType.Solid)
+
+const panelTypeList = reactive(
+  props.panel === "all"
+    ? [
+        { name: "纯色", type: ColorPickerPanelType.Solid },
+        { name: "线性渐变", type: ColorPickerPanelType.Linear },
+        { name: "径向渐变", type: ColorPickerPanelType.Radial },
+      ]
+    : [{ name: "纯色", type: ColorPickerPanelType.Solid }]
+)
 const heartList = ref<string[]>(JSON.parse(localStorage.getItem("designHeartColor") || "[]"))
 const showPanel = ref(false)
 const angle = ref(90)
@@ -228,9 +241,16 @@ watch(
 
 const typeLineStyle = computed(() => {
   return {
-    transform: `translate(${(280 / 6 - (ColorPickerPanelType.Solid === panelType.value ? 12 : 24) + (280 * panelType.value) / 3).toFixed(
-      2
-    )}px, 0px)`,
+    transform:
+      props.panel === "all"
+        ? `
+        translate(
+        ${(280 / 6 - (ColorPickerPanelType.Solid === panelType.value ? 12 : 24) + (280 * panelType.value) / 3).toFixed(2)}px, 0px)
+        `
+        : `
+        translate(
+        ${(280 / 2 - (ColorPickerPanelType.Solid === panelType.value ? 12 : 24)).toFixed(2)}px, 0px)
+        `,
     width: ColorPickerPanelType.Solid === panelType.value ? "24px" : "48px",
   }
 })

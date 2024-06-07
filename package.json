@@ -1,6 +1,6 @@
 {
   "name": "abundant-color-picker",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "author": "sunlihai",
   "description": "一个丰富的颜色选择器",
   "main": "./dist/abundantColorPicker.umd.js",

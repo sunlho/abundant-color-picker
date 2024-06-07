@@ -6,7 +6,7 @@ const color = ref<string>("#000000")
 
 <template>
   <div style="display: flex; justify-content: center">
-    <AbundantColorPickerBox v-model="color"></AbundantColorPickerBox>
+    <AbundantColorPickerBox panel="all" v-model="color"></AbundantColorPickerBox>
   </div>
 </template>
 
