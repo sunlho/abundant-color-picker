@@ -15,7 +15,6 @@ const props = withDefaults(
   }
 )
 
-console.log(props)
 const emit = defineEmits<{
   (event: "update:modelValue", payload: string): void
 }>()
