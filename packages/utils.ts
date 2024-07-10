@@ -67,7 +67,7 @@ export type colorObj = {
  * @param {number} originAlpha 透明度
  * @returns {colorObj} 返回颜色对象
  */
-export const colorToObj = (originColor: colorType | string, originAlpha?: number): colorObj => {
+export const colorToObj = (originColor?: colorType | string, originAlpha?: number): colorObj => {
   let color: tinyColor.Instance & { _a?: number }
   let alpha: number | undefined
   if (typeof originColor === "string") {
@@ -82,8 +82,8 @@ export const colorToObj = (originColor: colorType | string, originAlpha?: number
       a: color.getAlpha(),
     }
   } else {
-    alpha = originColor.a
-    switch (originColor.source) {
+    alpha = originColor?.a
+    switch (originColor?.source) {
       case "hex":
         color = tinyColor(originColor.hex)
         break
@@ -94,8 +94,8 @@ export const colorToObj = (originColor: colorType | string, originAlpha?: number
     const hsl = color.toHsl()
     const hsv = color.toHsv()
     if (hsl.s === 0) {
-      if (originColor.source === "hsl" || originColor.source === "hsva") {
-        hsv.h = hsl.h = originColor.h || originAlpha || 0
+      if (originColor?.source === "hsl" || originColor?.source === "hsva") {
+        hsv.h = hsl.h = originColor?.h || originAlpha || 0
       } else {
         hsv.h = hsl.h = originAlpha || 0
       }
@@ -106,9 +106,10 @@ export const colorToObj = (originColor: colorType | string, originAlpha?: number
       hex8: color.toHex8String().toUpperCase(),
       rgba: color.toRgb(),
       hsv,
-      oldHue: originColor.source === "hex" || originColor.source === "rgb" ? originAlpha || hsl.h : originColor.h || originAlpha || hsl.h,
-      a: originColor.a || color.getAlpha(),
-      source: originColor.source,
+      oldHue:
+        originColor?.source === "hex" || originColor?.source === "rgb" ? originAlpha || hsl.h : originColor?.h || originAlpha || hsl.h,
+      a: originColor?.a || color.getAlpha(),
+      source: originColor?.source,
     }
   }
 }

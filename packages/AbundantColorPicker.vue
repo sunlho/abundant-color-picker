@@ -74,8 +74,8 @@ const directionList = [
   "right bottom",
 ]
 
-const initColor = (value: string) => {
-  if (value.indexOf("linear-gradient") > -1) {
+const initColor = (value?: string) => {
+  if (value && value.indexOf("linear-gradient") > -1) {
     panelType.value = ColorPickerPanelType.Linear
     const { colorList, angle: gradientAngle } = gradientChangeColor(value, "linear")
     linearColor.value = colorList
@@ -83,7 +83,7 @@ const initColor = (value: string) => {
     if (!radialColor.value) {
       radialColor.value = colorList
     }
-  } else if (value.indexOf("radial-gradient") > -1) {
+  } else if (value && value.indexOf("radial-gradient") > -1) {
     panelType.value = ColorPickerPanelType.Radial
     const { colorList, direction: gradientDirection } = gradientChangeColor(value, "radial")
     radialColor.value = colorList
