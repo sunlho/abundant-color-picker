@@ -12,10 +12,10 @@ const components = {
   AbundantColorPickerBox,
 }
 
-export default {
+export const install: Plugin = {
   install(app: App) {
     Object.keys(components).forEach((name) => {
       app.component(name, components[name as keyof typeof components])
     })
   },
-} as Plugin
+}
