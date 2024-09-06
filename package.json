@@ -1,6 +1,6 @@
 {
   "name": "abundant-color-picker",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "author": "sunlihai",
   "description": "一个丰富的颜色选择器",
   "main": "./dist/abundantColorPicker.umd.js",
@@ -14,7 +14,6 @@
     "build": "vite --config vite.config.lib.ts build"
   },
   "dependencies": {
-    "abundant-color-picker": "link:",
     "element-plus": "^2.7.2",
     "tinycolor2": "^1.6.0",
     "vue": "^3.4.27"
